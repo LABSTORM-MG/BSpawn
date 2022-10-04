@@ -1,0 +1,18 @@
+name: BSpawn
+version: '${project.version}'
+main: me.labstorm.bspawn.Main
+api-version: 1.18
+commands:
+  setspawn:
+    permission: spawn.admin.setspawn
+    permission-message: You do not have permission to use this command.
+    description: lets u set the spawn
+    usage: /setspawn
+  spawn:
+    description: teleports you to spawn
+    usage: /spawn [<player>]
+  reloadspawnconfig:
+    description: reloads the config
+    usage: /reloadspawnconfig
+    permission-message: You do not have permission to use this command.
+    permission: spawn.admin.reload
