@@ -9,10 +9,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static me.labstorm.bspawn.utils.Utils.onSpawnCommand;
+
 public class SpawnCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Utils.msg("SpawnCommand-onCommand");
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "This command can only be executed by a player!");
             return true;
@@ -31,7 +32,9 @@ public class SpawnCommand implements CommandExecutor {
             Player p = ((Player) sender).getPlayer();
             assert p != null;
             Utils.spawnLogic(p, true);
+            onSpawnCommand(p);
             sender.sendMessage(ChatColor.GOLD + "Teleporting to spawn...");
+
         } else if (args.length == 1) {
             if (!sender.hasPermission("permisson: spawn.admin.others")) {
                 sender.sendMessage(ChatColor.RED + "You don't have the permissions to do that!");
@@ -43,7 +46,9 @@ public class SpawnCommand implements CommandExecutor {
                 return true;
             }
             Utils.spawnLogic(p, true);
+            onSpawnCommand(p);
             sender.sendMessage(ChatColor.GOLD + "Teleporting " + args[0] + " to spawn...");
+
         } else {
             sender.sendMessage(ChatColor.RED + "Unknown command please use: /spawn [<player>]");
         }

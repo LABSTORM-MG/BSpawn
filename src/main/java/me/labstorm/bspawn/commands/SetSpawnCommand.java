@@ -1,7 +1,6 @@
 package me.labstorm.bspawn.commands;
 
 import me.labstorm.bspawn.Main;
-import me.labstorm.bspawn.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +11,6 @@ import org.bukkit.entity.Player;
 public class SetSpawnCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Utils.msg("SetSpawnCommand-onCommand");
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "This command can only be executed by a Player!");
             return true;

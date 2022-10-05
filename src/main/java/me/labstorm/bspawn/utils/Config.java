@@ -4,6 +4,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.bukkit.configuration.file.YamlConfiguration.loadConfiguration;
 
@@ -13,7 +15,6 @@ public class Config {
     private final YamlConfiguration config;
 
     public Config() {
-        Utils.msg("Config-Config");
         File dir = new File("./plugins/BSpawn/");
         boolean dirWasCreated = false;
         if (!dir.exists()) {
@@ -38,7 +39,11 @@ public class Config {
     }
 
     private void generateConfig() {
-        Utils.msg("Config-generateConfig");
+        config.createSection("on-spawn-command");
+        config.setComments("on-spawn-command",
+                           new ArrayList<>(Arrays.asList(
+                                   "add commands below starting with \"- \"instead of \"/\",u can use %player% as a placeholder e.g.:,on-spawn-command:, - gamemode creative %player%, - execute as %player% run say hello".split(
+                                           ","))));
         config.set("clear-inventory-on-spawn", true);
         config.set("heal-player-on-spawn", true);
         config.set("send-player-to-spawn-on-join", true);
@@ -46,12 +51,10 @@ public class Config {
     }
 
     public YamlConfiguration getConfig() {
-        Utils.msg("Config-getConfig");
         return config;
     }
 
     public void save() {
-        Utils.msg("Config-save");
         try {
             config.save(file);
         } catch (IOException e) {

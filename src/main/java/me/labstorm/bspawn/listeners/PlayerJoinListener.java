@@ -12,7 +12,6 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent e) {
-        Utils.msg("PlayerJoinListener.onPlayerJoinEvent");
         Player p = e.getPlayer();
         if (Main.SPAWN_LOCATION == null) {
             if (p.hasPermission("spawn.admin.setspawn")) {
