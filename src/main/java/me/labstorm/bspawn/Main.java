@@ -47,7 +47,6 @@ public final class Main extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        confObj = new Config();
     }
 
     @Override
@@ -57,6 +56,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        confObj = new Config();
         Main.reload();
         if (Main.SPAWN_LOCATION == null) {
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Please set the server-spawn with /setspawn !");
